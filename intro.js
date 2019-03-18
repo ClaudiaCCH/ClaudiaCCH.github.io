@@ -61,7 +61,7 @@ function showSkills() {
 
     var htmlSkills = skills.map(function (skill, index) {
 
-        return "<li>" + skill + "</li>";
+        return "<li>" + skill.toUpperCase() + "</li>";
     });
 
 
