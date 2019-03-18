@@ -55,16 +55,15 @@ function hideAllPages() {
 
 initMenu();
 
-function showSkills()
-{      var skills = ['html', 'css', 'js'];
-       console.warn('showSkills', skills);
-       for(var i = 0; i < skills.length; i++) {
-           printSkill(skills[i], i);
-       }
-       function printSkill(skill, index) {
-              console.info("#" + (index + 1) + " " + skill);
-      } 
-
-      skills.forEach(printSkill);
+function showSkills() {
+    var skills = ['html', 'css', 'js'];
+    console.warn('showSkills', skills);
+    for (var i = 0; i < skills.length; i++) {
+        printSkill(skills[i], i);
+    }
+    function printSkill(skill, index) {
+        console.info("#" + (index + 1) + " " + skill);
+    }
 }
-    showSkills();
+    
+showSkills();
