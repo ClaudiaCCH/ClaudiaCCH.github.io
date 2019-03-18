@@ -2,9 +2,9 @@
 
 
 console.log("before welcome message")
-function getWelcomeMsg() { 
-console.log("inside welcome message") ;
- return "Welcome to my site!";
+function getWelcomeMsg() {
+    console.log("inside welcome message");
+    return "Welcome to my site!";
 }
 
 
@@ -37,19 +37,19 @@ function initMenu() {
 }
 
 
-function clickOnMenuItem () {
+function clickOnMenuItem() {
     console.warn("clicked on menu", this);
     hideAllPages();
 
     var pageId = this.getAttribute("data-page")
-    console.warn({pageId});
+    console.warn({ pageId });
     showPage(pageId);
 }
 
 function hideAllPages() {
     var pages = document.querySelectorAll(".page");
-    for(var i = 0; i< pages.length; i++) {
-        pages[i].style.display ="none";
+    for (var i = 0; i < pages.length; i++) {
+        pages[i].style.display = "none";
     }
 }
 
@@ -58,12 +58,11 @@ initMenu();
 function showSkills() {
     var skills = ['html', 'css', 'js'];
     console.warn('showSkills', skills);
-    for (var i = 0; i < skills.length; i++) {
-        printSkill(skills[i], i);
-    }
+    skills.forEach(printSkill);
+
     function printSkill(skill, index) {
         console.info("#" + (index + 1) + " " + skill);
     }
 }
-    
+
 showSkills();
