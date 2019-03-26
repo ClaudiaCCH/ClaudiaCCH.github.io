@@ -54,29 +54,34 @@ function hideAllPages() {
 }
 
 initMenu();
-
-function showSkills() {
-   // var allEndorsements = [8, 12, 19, 3];
-    //var skills = ['html', 'css', 'js', 'nodejs'];
-
-    var skills = [ 
-        {name: "js", endorsements: 20},
-        {name: "css", endorsements: 12}, 
-        {name: "html", endorsements: 8}, 
-        {name: "nodejs", endorsements: 3}
-    ];
-
-
-    var htmlSkills = skills.map(function (skill, index) {
-        var endorsements= '<span class="endorsement"> (' + skill.endorsements + ")</span>";
-        return "<li>" + skill.name.toUpperCase() + endorsements +"</li>";
+function showSkills(skills) {
+    skills.sort(function(a, b){
+        return b.endorsements - a.endorsements;
+    });
+    
+    var htmlSkills = skills.map(function(skill) {
+        var endorsedby = skill.endorsedBy ? " - " + skill.endorsedBy : "";
+        var endorsements = ` <span class="endorsement">(${skill.endorsements}${endorsedby})</span>`;
+        return "<li>" + skill.name.toUpperCase() + endorsements + "</li>";
     });
 
-
     var ul = document.querySelector("#skills-page ul");
-    ul.innerHTML = htmlSkills.join('');
-}
+    ul.innerHTML = htmlSkills.join("");
+}   
 
-hideAllPages ();
-showPage ("skills-page");
-showSkills();
+hideAllPages();
+showPage("skills-page");
+
+
+// TODO: load skills.json and pass them to showSkills
+console.log('1 before loading');
+fetch('data/skills.json')
+  .then(function(response) {
+      console.info('2 loaded skills.json', response)
+    return response.json();
+  })
+  .then(function(skills) {
+    console.log('3 skills', skills);
+    showSkills(skills);
+  });
+console.log('4 after load');
